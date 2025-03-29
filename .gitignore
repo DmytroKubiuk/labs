@@ -1,1 +1,2 @@
-.csv
+*.csv
+lab3/downloads/*.csv
