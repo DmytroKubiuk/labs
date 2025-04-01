@@ -113,7 +113,10 @@ with col2:
         plt.xticks(rotation=90)
         st.pyplot(fig)
     with tab3:
-        avg_values = df.groupby("area")[st.session_state.selected_column].mean().reset_index()
+        filtered = df[(df["Week"] >= st.session_state.selected_weeks[0]) & (df["Week"] <= st.session_state.selected_weeks[1]) & 
+                    (df["Year"].astype(int) >= st.session_state.selected_years[0]) & (df["Year"].astype(int) <= st.session_state.selected_years[1])]
+        
+        avg_values = filtered.groupby("area")[st.session_state.selected_column].mean().reset_index()
         avg_values['area']=avg_values['area'].astype(int)
         avg_values['area'] = avg_values['area'].map(old_indexes)
 
